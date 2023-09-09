@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option csharp_namespace = "BasketballWC";
+
+package player;
+
+service PlayerService {
+    rpc CreatePlayer(CreatePlayerRequest) returns (CreatePlayerResponse) {}
+    rpc ReadPlayer(ReadPlayerRequest) returns (ReadPlayerResponse) {}
+    rpc ReadAllPlayers(ReadAllPlayersRequest) returns (ReadAllPlayersResponse) {}
+    rpc UpdatePlayer(UpdatePlayerRequest) returns (UpdatePlayerResponse) {}
+    rpc DeletePlayer(DeletePlayerRequest) returns (DeletePlayerResponse) {}
+}
+
+message Team {
+    int32 id = 1;
+    string name = 2;
+}
+
+message Player {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int32 age = 4;
+    string position = 5;
+    string club = 6;
+}
+
+message CreatePlayerRequest {
+    string firstName = 1;
+    string lastName = 2;
+    int32 age = 3;
+    string position = 4;
+    int32 teamId = 5;
+    string club = 6;
+}
+
+message CreatePlayerResponse {
+    int32 id = 1;
+}
+
+message ReadPlayerRequest {
+    int32 id = 1;
+}
+
+message ReadPlayerResponse {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int32 age = 4;
+    string position = 5;
+    Team team = 6;
+    string club = 7;
+}
+
+message ReadAllPlayersRequest {}
+
+message ReadAllPlayersResponse {
+    repeated ReadPlayerResponse players = 1;
+}
+
+message UpdatePlayerRequest {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int32 age = 4;
+    string position = 5;
+    int32 teamId = 6;
+    string club = 7;
+}
+
+message UpdatePlayerResponse {
+    int32 id = 1;
+}
+
+message DeletePlayerRequest {
+    int32 id = 1;
+}
+
+message DeletePlayerResponse {
+    int32 id = 1;
+}

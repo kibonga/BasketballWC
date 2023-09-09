@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option csharp_namespace = "BasketballWC";
+
+package team;
+
+import "player.proto";
+
+service TeamService {
+    rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse) {}
+    rpc ReadTeam(ReadTeamRequest) returns (ReadTeamResponse) {}
+    rpc ReadAllTeams(ReadAllTeamsRequest) returns (ReadAllTeamsResponse) {}
+    rpc UpdateTeam(UpdateTeamRequest) returns (UpdateTeamResponse) {}
+    rpc DeleteTeam(DeleteTeamRequest) returns (DeleteTeamResponse) {}
+}
+
+message CreateTeamRequest {
+    string name = 1;
+    int32 ranking = 2;
+    repeated player.Player players = 3;
+}
+
+message CreateTeamResponse {
+    int32 id = 1;
+}
+
+message ReadTeamRequest {
+    int32 id = 1;
+}
+
+message ReadTeamResponse {
+    int32 id = 1;
+    string name = 2;
+    int32 ranking = 3;
+    repeated player.Player players = 4;
+}
+
+message ReadAllTeamsRequest {}
+
+message ReadAllTeamsResponse {
+    repeated ReadTeamResponse teams = 1;
+}
+
+message UpdateTeamRequest {
+    int32 id = 1;
+    string name = 2;
+    int32 ranking = 3;
+    repeated player.Player players = 4;
+}
+
+message UpdateTeamResponse {
+    int32 id = 1;
+}
+
+message DeleteTeamRequest {
+    int32 id = 1;
+}
+
+message DeleteTeamResponse {
+    int32 id = 1;
+}
